@@ -19,6 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const raccoonAncor = mindarThree.addAnchor(0);
     raccoonAncor.group.add(raccoon.scene);
 
+    raccoonAncor.onTargetFound = async (ev) => {
+      const response = await fetch("http://localhost:8000/detect");
+    };
+    raccoonAncor.onTargetLost = async (ev) => {
+      const response = await fetch("http://localhost:8000/lost");
+    };
+
     await mindarThree.start();
 
     let direction = -1;
