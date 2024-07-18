@@ -20,10 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
     raccoonAncor.group.add(raccoon.scene);
 
     raccoonAncor.onTargetFound = async (ev) => {
-      const response = await fetch("http://localhost:8000/detect");
+      const response = await fetch("http://192.168.0.132:8000/detect");
     };
     raccoonAncor.onTargetLost = async (ev) => {
-      const response = await fetch("http://localhost:8000/lost");
+      const response = await fetch("http://192.168.0.132:8000/lost");
     };
 
     await mindarThree.start();
