@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
     scene.add(light);
 
-    const raccoon = await loadGLTF('./assets/models/musicband-raccoon/racoon.gltf');
+    const raccoon = await loadGLTF('./assets/models/musicband-raccoon/airplain.gltf');
     raccoon.scene.scale.set(0.1, 0.1, 0.1);
     raccoon.scene.position.set(0, 0, 0);
 
@@ -20,10 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
     raccoonAncor.group.add(raccoon.scene);
 
     raccoonAncor.onTargetFound = async (ev) => {
-      const response = await fetch("http://192.168.0.132:8000/detect");
+      const response = await fetch("http://192.168.0.111:8000/detect");
     };
     raccoonAncor.onTargetLost = async (ev) => {
-      const response = await fetch("http://192.168.0.132:8000/lost");
+      const response = await fetch("http://192.168.0.111:8000/lost");
     };
 
     await mindarThree.start();
@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (raccoon.scene.position.y > 1 || raccoon.scene.position.y < -1) {
         direction *= -1;
       }
+
+      raccoon.rotation.set(0,0,Math.PI/2);
 
       renderer.render(scene, camera);
     });
