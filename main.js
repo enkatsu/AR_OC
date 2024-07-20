@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const raccoon = await loadGLTF('./assets/models/musicband-raccoon/airplain.gltf');
     raccoon.scene.scale.set(0.1, 0.1, 0.1);
     raccoon.scene.position.set(0, 0, 0);
+    raccoon.scene.rotation.set(0, -Math.PI / 2, 0);
 
     const raccoonAncor = mindarThree.addAnchor(0);
     raccoonAncor.group.add(raccoon.scene);
@@ -45,8 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (raccoon.scene.position.y > 1 || raccoon.scene.position.y < -1) {
         direction *= -1;
       }
-
-      raccoon.rotation.set(0,0,Math.PI/2);
 
       renderer.render(scene, camera);
     });
