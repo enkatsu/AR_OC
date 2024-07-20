@@ -3,6 +3,12 @@ const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
   const start = async () => {
+    const socket = new WebSocket('ws://localhost:8080');
+    socket.addEventListener('open', (event) => {
+    });
+    socket.addEventListener('message', (event) => {
+    });
+
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
       imageTargetSrc: './assets/targets/QR_bird.mind'
@@ -20,10 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
     raccoonAncor.group.add(raccoon.scene);
 
     raccoonAncor.onTargetFound = async (ev) => {
-      const response = await fetch("http://192.168.0.111:8000/detect");
+      socket.send('detected');
     };
     raccoonAncor.onTargetLost = async (ev) => {
-      const response = await fetch("http://192.168.0.111:8000/lost");
+      socket.send('lost');
     };
 
     await mindarThree.start();
