@@ -35,18 +35,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     await mindarThree.start();
 
-    let direction = -1;
-    const speed = 0.01;
+    let direction = 1;
+    const speed = 0.003;
 
     renderer.setAnimationLoop(() => {
       // 直線的な動きを追加
       raccoon.scene.position.y += direction * speed;
       raccoon.scene.position.x += direction * speed;
       // 一定距離動いたら方向を反転
-      if (raccoon.scene.position.y > 1 || raccoon.scene.position.y < -1) {
+      if (raccoon.scene.position.y > 1.4 || raccoon.scene.position.y < -1) {
         direction *= -1;
       }
-
       renderer.render(scene, camera);
     });
   }
